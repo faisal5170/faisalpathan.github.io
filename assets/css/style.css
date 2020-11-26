@@ -1758,3 +1758,8 @@ p.form-message.success, p.form-message.error {
       cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */
+.work-desc {
+    color: white;
+    font-size: 16px;
+    padding: 0px 8px 15px 8px;
+}
