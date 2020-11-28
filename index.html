@@ -27,7 +27,7 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
-	<link rel="manifest" href="assets/images/favicon/manifest.json">
+	<!-- <link rel="manifest" href="assets/images/favicon/manifest.json"> -->
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="assets/images/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
@@ -629,19 +629,19 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="contact-form pt-30">
-                        <form id="contact-form" action="assets/contact.php">
+                        <form id="contact-form" action="#">
                             <div class="single-form">
-                                <input type="text" name="name" placeholder="Name">
+                                <input type="text" name="name" id="txtName" placeholder="Name" required>
                             </div> <!-- single form -->
                             <div class="single-form">
-                                <input type="email" name="email" placeholder="Email">
+                                <input type="email" name="email" id="txtEmail" placeholder="Email" required>
                             </div> <!-- single form -->
                             <div class="single-form">
-                                <textarea name="message" placeholder="Message"></textarea>
+                                <textarea name="message" id="txtMessage" placeholder="Message" required></textarea>
                             </div> <!-- single form -->
                             <p class="form-message"></p>
                             <div class="single-form">
-                                <button class="main-btn" type="button" onclick="sendEmail()">Send Message</button>
+                                <button class="main-btn" id="btnSend" type="button" onclick="sendEmail();">Send Message</button>
                             </div> <!-- single form -->
                         </form>
                     </div> <!-- contact form -->
@@ -729,24 +729,48 @@
     <script src="assets/js/main.js"></script>
 	<script>
 	
-	var settings = {
-		"url": "https://localhost:44364/api/Values/SendTestEmail",
-		"method": "POST",
-		"headers": {
-			"Content-Type": "application/json",
-		},
-		"data": JSON.stringify({
-		"email":"faisalmpathan@gmail.com",
-		"name":"Faisal Test",
-		"message":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. .!-()8*"}),
-	};
-
+		function sendEmail(){
+		$('#btnSend').text('Sending....');
+		$('#btnSend').prop('disabled', true);
+				var isSuccess = true;
+			if(!$('#txtEmail').val()){
+				alert('Please enter email!');
+				isSuccess = false;
+			}
+			else if(!$('#txtName').val()){
+				alert('Please enter name!');
+				isSuccess = false;
+			}
+			else if(!$('#txtMessage').val()){
+				alert('Please enter message!');
+				isSuccess = false;
+			}
+			if(isSuccess){
+				var settings = {
+					"url": 'http://amsapi.mycodelibraries.com/api/email/SendTestEmail',    
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+					},
+					"data": JSON.stringify({
+					"email": $('#txtEmail').val(),
+					"name":$('#txtName').val(),
+					"message":$('#txtMessage').val()
+					}),
+				};
+			
+			}
+			$.ajax(settings).done(function (response) {
+			$('#btnSend').text('Send Message');
+			$('#btnSend').prop('disabled', false);
+				if(response.isSuccess){
+					alert('Thanks for contact, will reply you soon :)');
+				}else{
+					alert('Unable to send email, Kindly contact on my mail "faisalmpathan@gmail.com" :)');
+				}
+			});
+		}
 	
-	function sendEmail(){
-		$.ajax(settings).done(function (response) {
-			console.log(response);
-		});
-	}
 	</script>
 </body>
 
