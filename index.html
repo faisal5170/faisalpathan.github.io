@@ -759,16 +759,17 @@
 					}),
 				};
 			
-			}
-			$.ajax(settings).done(function (response) {
-			$('#btnSend').text('Send Message');
-			$('#btnSend').prop('disabled', false);
-				if(response.isSuccess){
-					alert('Thanks for contact, will reply you soon :)');
-				}else{
-					alert('Unable to send email, Kindly contact on my mail "faisalmpathan@gmail.com" :)');
-				}
-			});
+			
+				$.ajax(settings).done(function (response) {
+				$('#btnSend').text('Send Message');
+				$('#btnSend').prop('disabled', false);
+					if(response.isSuccess){
+						alert('Thanks for contact, will reply you soon :)');
+					}else{
+						alert('Unable to send email, Kindly contact on my mail "faisalmpathan@gmail.com" :)');
+					}
+				});
+			};
 		}
 	
 	</script>
