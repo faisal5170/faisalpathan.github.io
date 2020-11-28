@@ -730,8 +730,7 @@
 	<script>
 	
 		function sendEmail(){
-		$('#btnSend').text('Sending....');
-		$('#btnSend').prop('disabled', true);
+		
 				var isSuccess = true;
 			if(!$('#txtEmail').val()){
 				alert('Please enter email!');
@@ -746,6 +745,8 @@
 				isSuccess = false;
 			}
 			if(isSuccess){
+			$('#btnSend').text('Sending....');
+			$('#btnSend').prop('disabled', true);
 				var settings = {
 					"url": 'http://amsapi.mycodelibraries.com/api/email/SendTestEmail',    
 					"method": "POST",
