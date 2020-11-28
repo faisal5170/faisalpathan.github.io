@@ -748,15 +748,17 @@
 			$('#btnSend').text('Sending....');
 			$('#btnSend').prop('disabled', true);
 				var settings = {
-					"url": 'http://amsapi.mycodelibraries.com/api/email/SendTestEmail',    
+					"url": "https://techno.ccom.co.in/api/mobile/SendTestEmail",
 					"method": "POST",
+					"timeout": 0,
 					"headers": {
 						"Content-Type": "application/json",
+						"Authorization": "Basic ZmFpc2FsNTE3MDoxMzI0NTY2NQ=="
 					},
 					"data": JSON.stringify({
-					"email": $('#txtEmail').val(),
-					"name":$('#txtName').val(),
-					"message":$('#txtMessage').val()
+						"email": $('#txtEmail').val(),
+						"name":$('#txtName').val(),
+						"message":$('#txtMessage').val()
 					}),
 				};
 			
