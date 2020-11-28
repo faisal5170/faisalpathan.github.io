@@ -754,8 +754,10 @@
 					"headers": {
 						"Content-Type": "application/json",
 						"Authorization": "Basic ZmFpc2FsNTE3MDoxMzI0NTY2NQ==",
-						"Access-Control-Allow-Origin" : "https://techno.ccom.co.in/"
+						<!-- "Access-Control-Allow-Origin" : "https://techno.ccom.co.in/" -->
 					},
+					crossDomain: true,
+					dataType: 'jsonp',
 					"data": JSON.stringify({
 						"email": $('#txtEmail').val(),
 						"name":$('#txtName').val(),
