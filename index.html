@@ -747,51 +747,19 @@
 			if(isSuccess){
 			$('#btnSend').text('Sending....');
 			$('#btnSend').prop('disabled', true);
-			    var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-				myHeaders.append("Authorization", "Basic ZmFpc2FsNTE3MDoxMzI0NTY2NQ==");
-				myHeaders.append('Origin','https://faisal5170.github.io/');
-				var raw = JSON.stringify({"email":"faisal@ff.com","name":"dsx","message":"techno"});
-				
-				var requestOptions = {
-				method: 'POST',
-				headers: myHeaders,
-				body: raw,
-				redirect: 'follow'
-				};
-				
-				fetch("https://techno.ccom.co.in/api/email/SendTestEmail", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-				<!-- var settings = { -->
-					<!-- "url": "https://techno.ccom.co.in/api/email/SendTestEmail", -->
-					<!-- "type": "POST", -->
-					<!-- "timeout": 0, -->
-					<!-- "headers": { -->
-						<!-- "Content-Type": "application/json", -->
-						<!-- "Authorization": "Basic ZmFpc2FsNTE3MDoxMzI0NTY2NQ==", -->
-						<!-- <!-- "Access-Control-Allow-Origin" : "https://techno.ccom.co.in/" --> -->
-					<!-- }, -->
-					<!-- crossDomain: true, -->
-					<!-- dataType: 'jsonp', -->
-					<!-- "data": json.stringify({ -->
-						<!-- "email": $('#txtemail').val(), -->
-						<!-- "name":$('#txtname').val(), -->
-						<!-- "message":$('#txtmessage').val() -->
-					<!-- }), -->
-				<!-- }; -->
-			
-			
-				<!-- $.ajax(settings).done(function (response) { -->
-				<!-- $('#btnSend').text('Send Message'); -->
-				<!-- $('#btnSend').prop('disabled', false); -->
-					<!-- if(response.isSuccess){ -->
-						<!-- alert('Thanks for contact, will reply you soon :)'); -->
-					<!-- }else{ -->
-						<!-- alert('Unable to send email, Kindly contact on my mail "faisalmpathan@gmail.com" :)'); -->
-					<!-- } -->
-				<!-- }); -->
+			   var settings = {
+  "url": "https://techno.ccom.co.in/api/email/SendTestEmail",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({"email":"faisal@ff.com","name":"dsx","message":"techno"}),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
 			};
 		}
 	
